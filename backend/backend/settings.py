@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     "corsheaders",
     'post',
     'comments',
+    "daphne",
+    "channels",
+    "chat", 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +53,19 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'useraccounts.CustomUser'
+
+ASGI_APPLICATION = "backend.asgi.application"
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],  # Ensure Redis is running
+        },
+    },
+}
+
 
 
 MIDDLEWARE = [
